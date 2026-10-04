@@ -896,18 +896,18 @@
 
             <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
-                    <label class="form-label">User Email ID</label>
+                    <label class="form-label">User Identifier</label>
                     <div class="input-wrapper">
-                        <input type="email" id="loginEmail" class="form-input" placeholder="harsh@htbgglobal.com" required autocomplete="username">
+                        <input type="text" id="loginEmail" class="form-input" placeholder="e.g. John Doe" required autocomplete="off">
                         <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
                         </svg>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Password</label>
+                    <label class="form-label">Security Passcode</label>
                     <div class="input-wrapper">
                         <input type="password" id="loginPassword" class="form-input" placeholder="••••••••••••" required autocomplete="current-password">
                         <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -929,7 +929,7 @@
                         <line x1="12" y1="8" x2="12" y2="12"></line>
                         <line x1="12" y1="16" x2="12.01" y2="16"></line>
                     </svg>
-                    <span>Invalid Email ID or Password. Access Denied.</span>
+                    <span>Access Denied. Invalid security credentials.</span>
                 </div>
 
                 <button type="submit" class="btn-submit">
@@ -1065,8 +1065,9 @@
     <script>
         // AUTHENTICATION CONFIG
         const AUTH_KEY = 'htbg_deck_authenticated';
-        const VALID_EMAIL = 'harsh@htbgglobal.com';
-        const VALID_PASS = 'India@123';
+        // Obfuscated security tokens
+        const _TK1 = 'aGFyc2hAaHRiZ2dsb2JhbC5jb20=';
+        const _TK2 = 'SW5kaWFAMTIz';
 
         // Known static manifest as instant fallback
         const STATIC_MANIFEST = [
@@ -1099,17 +1100,17 @@
 
         function handleLogin(e) {
             e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const pass = document.getElementById('loginPassword').value.trim();
+            const val1 = document.getElementById('loginEmail').value.trim();
+            const val2 = document.getElementById('loginPassword').value.trim();
             const errorDiv = document.getElementById('authError');
 
-            if (email.toLowerCase() === VALID_EMAIL.toLowerCase() && pass === VALID_PASS) {
+            if (btoa(val1.toLowerCase()) === _TK1 && btoa(val2) === _TK2) {
                 sessionStorage.setItem(AUTH_KEY, 'true');
                 localStorage.setItem(AUTH_KEY, 'true');
                 errorDiv.style.display = 'none';
                 document.getElementById('authOverlay').classList.add('hidden');
                 loadDecks();
-                showToast('Authentication successful. Welcome Harsh!');
+                showToast('Authentication successful.');
             } else {
                 errorDiv.style.display = 'flex';
                 document.getElementById('loginPassword').value = '';
