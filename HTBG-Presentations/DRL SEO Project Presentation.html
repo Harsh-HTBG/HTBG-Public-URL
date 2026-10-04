@@ -676,7 +676,10 @@
             padding: 3px 8px;
             border-radius: 6px;
             border: 1px solid #CBD5E1;
-            font-weight: 600
+            font-weight: 600;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            max-width: 100%;
         }
 
         strong {
@@ -3687,12 +3690,12 @@
                             <code>/robots.txt</code> with a valid plain-text file containing proper Disallow rules and
                             <code>Sitemap: https://documentreview.law/sitemap.xml</code>.</li>
                         <li><strong>Implement Canonical Tags:</strong> Add self-referencing
-                            <code><link rel="canonical" href="https://documentreview.law/" /></code> on the homepage and
+                            <code>&lt;link rel="canonical" href="https://documentreview.law/" /&gt;</code> on the homepage and
                             across all indexable landing pages.</li>
                         <li><strong>Overhaul Title Tags & Meta Descriptions:</strong> Remove duplicate title and meta
                             description tags across internal pages. Implement unique 50–60 char titles (with secondary
                             keyword modifiers) and unique 150–160 char meta descriptions.</li>
-                        <li><strong>H1 Tag Standardisation:</strong> Ensure every page has exactly one <code><h1></code>
+                        <li><strong>H1 Tag Standardisation:</strong> Ensure every page has exactly one <code>&lt;h1&gt;</code>
                             tag matching its title tag and primary target keyword.</li>
                         <li><strong>Remediate Outdated Blog Content:</strong> Update or redirect the outdated blog
                             article that contains obsolete pricing and mobile availability info to resolve trust issues.
